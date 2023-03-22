@@ -18,11 +18,11 @@ T Partition(T first, T last)
 }
 
 template <class T, class Compare = std::less<>>
-void QuickSort(T first, T last) {
-    if (std::distance(first, last) > 1){
-        T bound = Partition<T, Compare>(first, last);
-        QuickSort<T, Compare>(first, bound);
-        QuickSort<T, Compare>(bound + 1, last);
+void QuickSort(T begin, T end) {
+    if (std::distance(begin, end) > 1){
+        T bound = Partition<T, Compare>(begin, end);
+        QuickSort<T, Compare>(begin, bound);
+        QuickSort<T, Compare>(bound + 1, end);
     }
 }
 
