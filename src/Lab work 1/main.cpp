@@ -19,14 +19,14 @@ int main() {
     std::cout << "Elements in array: " << N << std::endl << std::endl;
 
     std::clock_t start = std::clock();
-    QuickSort<std::vector<int>::iterator>(quick.begin(), quick.end());
+    QuickSort<std::vector<int>::iterator>(quick.begin(), --quick.end());
     std::cout << "Quick Sort Duration: " << (std::clock() - start) << " ms" << std::endl;
 
     start = std::clock();
-    InsertionSort<std::vector<int>::iterator>(insert.begin(), insert.end());
+    InsertionSort<std::vector<int>::iterator>(insert.begin(), --insert.end());
     std::cout << "Insertion Sort Duration: " << (std::clock() - start) << " ms" << std::endl;
 
     start = std::clock();
-    std::sort<std::vector<int>::iterator>(std_sort.begin(), std_sort.end());
+    std::sort<std::vector<int>::iterator>(std_sort.begin(), --std_sort.end());
     std::cout << "Std Sort Duration: " << (std::clock() - start) << " ms" << std::endl;
 }
