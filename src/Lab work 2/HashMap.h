@@ -1,27 +1,26 @@
 #ifndef SADPA_HASHMAP_H_
 #define SADPA_HASHMAP_H_
 
-#include <vector>
 #include <cstdlib>
 #include <string>
-
-constexpr int TABLE_SIZE = 1000;
+#include <vector>
 
 class HashNode;
 
 class HashMap {
-public:
-    HashMap();
+  static constexpr int TABLE_SIZE = 1000;
 
-    int hash(int key);
+ public:
+  HashMap();
 
-    void insert(int key, std::string value);
-    std::string get(int key);
-    void remove(int key);
+  int hash(int key);
 
-private:
-    std::vector<HashNode*> table;
+  void insert(int key, std::string value);
+  std::string get(int key);
+  void remove(int key);
+
+ private:
+  std::vector<HashNode*> table;
 };
 
-
-#endif //SADPA_HASHMAP_H_
+#endif  // SADPA_HASHMAP_H_
