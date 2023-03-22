@@ -3,7 +3,7 @@
 
 #include <functional>
 
-template <typename T, typename Compare>
+template <class T, class Compare>
 T Partition(T first, T last)
 {
     auto base = std::prev(last, 1);
@@ -17,7 +17,7 @@ T Partition(T first, T last)
     return i;
 }
 
-template <typename T, typename Compare = std::less<>>
+template <class T, class Compare = std::less<>>
 void QuickSort(T first, T last) {
     if (std::distance(first, last) > 1){
         T bound = Partition<T, Compare>(first, last);
