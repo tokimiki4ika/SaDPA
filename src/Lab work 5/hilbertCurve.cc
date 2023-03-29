@@ -2,18 +2,18 @@
 #include <cmath>
 #include <iostream>
 
-void FirstExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void FirstExp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y);
-void SecondExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void SecondExp(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y);
-void ThirdExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void ThirdExp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y);
-void FourthExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void FourthExp(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y);
 void DrawLine(double xPos, double yPos, sf::RenderWindow &window, double &x,
               double &y);
 
-void FirstExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void FirstExp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y) {
   if (pre_size > 0) {
     FourthExp(pre_size - 1, length, window, x, y);
@@ -26,7 +26,7 @@ void FirstExp(int pre_size, int length, sf::RenderWindow &window, double &x,
   }
 }
 
-void SecondExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void SecondExp(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y) {
   if (pre_size > 0) {
     ThirdExp(pre_size - 1, length, window, x, y);
@@ -39,7 +39,7 @@ void SecondExp(int pre_size, int length, sf::RenderWindow &window, double &x,
   }
 }
 
-void ThirdExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void ThirdExp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y) {
   if (pre_size > 0) {
     SecondExp(pre_size - 1, length, window, x, y);
@@ -52,7 +52,7 @@ void ThirdExp(int pre_size, int length, sf::RenderWindow &window, double &x,
   }
 }
 
-void FourthExp(int pre_size, int length, sf::RenderWindow &window, double &x,
+void FourthExp(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y) {
   if (pre_size > 0) {
     FirstExp(pre_size - 1, length, window, x, y);
@@ -82,18 +82,18 @@ int main() {
   double x = 25, y = 25;
 
   do {
-    std::cout << "Введите размер кривой Гильберта(1 - 7): ";
+    std::cout << "Введите размер кривой Гильберта(1 - 10): ";
     std::cin >> size_curve;
-  } while (size_curve < 1 || size_curve > 7);
+  } while (size_curve < 1 || size_curve > 10);
 
   double length_line = (window_size - 50) / (pow(2, size_curve) - 1.);
-  if (length_line < 1) {
+  if (length_line < 0.2) {
     throw std::logic_error(
         "Размер кривой Гильберта не помещается в размер окна");
   }
 
   sf::RenderWindow Window(sf::VideoMode(window_size, window_size),
-                          "Кривая Гильберта");
+                          "Hilbert Curve");
 
   FirstExp(size_curve, length_line, Window, x, y);
 
