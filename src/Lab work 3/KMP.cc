@@ -39,9 +39,13 @@ std::vector<int> KMP(const std::string& text, const std::string& pattern) {
 }
 
 int main() {
-    std::string text = "abcdeabcdabc";
-    std::string pattern = "abc";
-    std::vector<int> matches = KMP(text, pattern);
+    std::string stringForKMP;
+    std::cout << "Insert source string:" << std::endl;
+    std::cin >> stringForKMP;
+    std::cout << "Insert pattern for search:" << std::endl;
+    std::string pattern;
+    std::cin >> pattern;
+    std::vector<int> matches = KMP(stringForKMP, pattern);
     std::cout << "Matches found at positions: ";
     for (int item : matches) {
         std::cout << item << " ";
