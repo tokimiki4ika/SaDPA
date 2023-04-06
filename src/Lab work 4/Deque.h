@@ -1,6 +1,9 @@
 #ifndef SADPA_DEQUE_H_
 #define SADPA_DEQUE_H_
 
+#include <stdexcept>
+#include <utility>
+
 template <class Key>
 class Deque {
     struct Node {
