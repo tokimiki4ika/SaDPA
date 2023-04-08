@@ -10,7 +10,6 @@ int main() {
     for (int i = 1; i < N; i++) {
         a.insert(std::rand());
     }
-    a.insert(5);
     std::cout << "Elements in tree: " << N << std::endl;
     char oper{};
     std::clock_t tmp{};

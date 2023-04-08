@@ -7,6 +7,12 @@ int main() {
     HashTable a(5);
     int N;
     char oper{};
+    std::cout << "Enter a count of element for insert in tree:" << std::endl;
+    std::cin >> N;
+    for (int i = 0; i < N; i++) {
+        a[std::rand()] = "random";
+    }
+    std::cout << "Elements in tree: " << N << std::endl;
     std::clock_t tmp{};
     std::string tmp_str{};
     do {
