@@ -2,66 +2,66 @@
 #include <cmath>
 #include <iostream>
 
-void FirstExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveRight(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y);
-void SecondExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveLeft(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y);
-void ThirdExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveUp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y);
-void FourthExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveDown(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y);
 void DrawLine(double xPos, double yPos, sf::RenderWindow &window, double &x,
               double &y);
 
-void FirstExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveRight(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y) {
   if (pre_size > 0) {
-    FourthExp(pre_size - 1, length, window, x, y);
+    DrawCurveDown(pre_size - 1, length, window, x, y);
     DrawLine(length, 0, window, x, y);
-    FirstExp(pre_size - 1, length, window, x, y);
+    DrawCurveRight(pre_size - 1, length, window, x, y);
     DrawLine(0, length, window, x, y);
-    FirstExp(pre_size - 1, length, window, x, y);
+    DrawCurveRight(pre_size - 1, length, window, x, y);
     DrawLine(-length, 0, window, x, y);
-    ThirdExp(pre_size - 1, length, window, x, y);
+    DrawCurveUp(pre_size - 1, length, window, x, y);
   }
 }
 
-void SecondExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveLeft(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y) {
   if (pre_size > 0) {
-    ThirdExp(pre_size - 1, length, window, x, y);
+    DrawCurveUp(pre_size - 1, length, window, x, y);
     DrawLine(-length, 0, window, x, y);
-    SecondExp(pre_size - 1, length, window, x, y);
+    DrawCurveLeft(pre_size - 1, length, window, x, y);
     DrawLine(0, -length, window, x, y);
-    SecondExp(pre_size - 1, length, window, x, y);
+    DrawCurveLeft(pre_size - 1, length, window, x, y);
     DrawLine(length, 0, window, x, y);
-    FourthExp(pre_size - 1, length, window, x, y);
+    DrawCurveDown(pre_size - 1, length, window, x, y);
   }
 }
 
-void ThirdExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveUp(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y) {
   if (pre_size > 0) {
-    SecondExp(pre_size - 1, length, window, x, y);
+    DrawCurveLeft(pre_size - 1, length, window, x, y);
     DrawLine(0, -length, window, x, y);
-    ThirdExp(pre_size - 1, length, window, x, y);
+    DrawCurveUp(pre_size - 1, length, window, x, y);
     DrawLine(-length, 0, window, x, y);
-    ThirdExp(pre_size - 1, length, window, x, y);
+    DrawCurveUp(pre_size - 1, length, window, x, y);
     DrawLine(0, length, window, x, y);
-    FirstExp(pre_size - 1, length, window, x, y);
+    DrawCurveRight(pre_size - 1, length, window, x, y);
   }
 }
 
-void FourthExp(int pre_size, double length, sf::RenderWindow &window, double &x,
+void DrawCurveDown(int pre_size, double length, sf::RenderWindow &window, double &x,
                double &y) {
   if (pre_size > 0) {
-    FirstExp(pre_size - 1, length, window, x, y);
+    DrawCurveRight(pre_size - 1, length, window, x, y);
     DrawLine(0, length, window, x, y);
-    FourthExp(pre_size - 1, length, window, x, y);
+    DrawCurveDown(pre_size - 1, length, window, x, y);
     DrawLine(length, 0, window, x, y);
-    FourthExp(pre_size - 1, length, window, x, y);
+    DrawCurveDown(pre_size - 1, length, window, x, y);
     DrawLine(0, -length, window, x, y);
-    SecondExp(pre_size - 1, length, window, x, y);
+    DrawCurveLeft(pre_size - 1, length, window, x, y);
   }
 }
 
@@ -79,7 +79,7 @@ int main() {
   int window_size = 960;
   int size_curve;
 
-  double x = 25, y = 25;
+  double x = 960 - 25, y = x;
 
   do {
     std::cout << "Введите размер кривой Гильберта(1 - 10): ";
@@ -94,8 +94,7 @@ int main() {
 
   sf::RenderWindow Window(sf::VideoMode(window_size, window_size),
                           "Hilbert Curve");
-
-  FirstExp(size_curve, length_line, Window, x, y);
+  DrawCurveUp(size_curve, length_line, Window, x, y);
 
   Window.display();
 
