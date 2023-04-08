@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <boost/algorithm/string.hpp>
 
 std::vector<int> computePrefixFunction(const std::string& pattern) {
     int m = pattern.length();
@@ -45,11 +47,18 @@ int main() {
     std::cout << "Insert pattern for search:" << std::endl;
     std::string pattern;
     std::cin >> pattern;
+    std::clock_t start = clock();
     std::vector<int> matches = KMP(stringForKMP, pattern);
-    std::cout << "Matches found at positions: ";
-    for (int item : matches) {
-        std::cout << item << " ";
+    std::cout << "Duration KMP find in ms - " << clock() - start << std::endl;
+    int index{};
+    start = clock();
+    while ((index = stringForKMP.find(pattern, index)) != std::string::npos) {
+        index += pattern.length();
     }
-    std::cout << std::endl;
+    std::cout << "Duration std::find in ms - " << clock() - start << std::endl;
+    std::vector<boost::iterator_range<std::string::const_iterator>> matches2;
+    start = clock();
+    boost::find_all(matches2, stringForKMP, pattern);
+    std::cout << "Duration boost::find_all in ms - " << clock() - start << std::endl;
     return 0;
 }

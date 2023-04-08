@@ -11,7 +11,7 @@ lab2-2:
 	@./test
 
 lab3:
-	@g++ src/Lab\ work\ 3/KMP.cc -o test
+	@g++ src/Lab\ work\ 3/KMP.cc -o test -lboost_system -lboost_filesystem
 	@./test
 
 lab4:
