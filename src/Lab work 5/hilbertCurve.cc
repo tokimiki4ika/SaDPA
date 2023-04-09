@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
+#include <ctime>
 
 void DrawCurveRight(int pre_size, double length, sf::RenderWindow &window, double &x,
               double &y);
@@ -94,7 +95,9 @@ int main() {
 
   sf::RenderWindow Window(sf::VideoMode(window_size, window_size),
                           "Hilbert Curve");
+  std::clock_t start = clock();
   DrawCurveUp(size_curve, length_line, Window, x, y);
+  std::cout << clock() - start << " ms" << std::endl;
 
   Window.display();
 
